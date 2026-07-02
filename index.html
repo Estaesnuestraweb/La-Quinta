@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Quinta Terraza — Desayunos, brunch y buffet dominical · Carretera Nacional, Monterrey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#FBF3E4;
+    --crema-2:#F2E6CC;
+    --papel:#FFFCF5;
+    --tinta:#2B2620;
+    --verde:#3F5A3D;
+    --verde-osc:#28381F;
+    --verde-luz:#7C9A6A;
+    --terracota:#C1653D;
+    --terracota-luz:#DD8158;
+    --oro:#C99A3E;
+    --humo:#6E6656;
+    --linea:#e3d4b0;
+    --maxw:1180px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  button{font-family:inherit;background:none;border:none;cursor:pointer;color:inherit;font-size:inherit;text-align:inherit;}
+
+  body{
+    font-family:'Work Sans',sans-serif;
+    background:var(--crema);
+    color:var(--tinta);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    line-height:1.02;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  .eyebrow{
+    font-family:'Work Sans',sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--terracota);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:16px;
+    font-weight:600;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--terracota);display:inline-block;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:15px 28px;border-radius:999px;
+    font-family:'Work Sans',sans-serif;font-size:14.5px;font-weight:600;
+    border:1.5px solid transparent;cursor:pointer;
+    transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+  }
+  .btn:focus-visible{outline:3px solid var(--oro);outline-offset:3px;}
+  .btn-primary{background:var(--terracota);color:var(--papel);}
+  .btn-primary:hover{background:var(--terracota-luz);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--papel);border-color:rgba(255,252,245,0.45);}
+  .btn-ghost:hover{border-color:var(--papel);transform:translateY(-2px);}
+  .btn-outline{background:transparent;color:var(--verde);border-color:var(--verde);}
+  .btn-outline:hover{background:var(--verde);color:var(--papel);transform:translateY(-2px);}
+
+  /* ---------- TRELLIS PATTERN ---------- */
+  .trellis{
+    background-image:
+      repeating-linear-gradient(55deg, rgba(255,252,245,0.05) 0 2px, transparent 2px 46px),
+      repeating-linear-gradient(-55deg, rgba(255,252,245,0.05) 0 2px, transparent 2px 46px);
+  }
+  .trellis-light{
+    background-image:
+      repeating-linear-gradient(55deg, rgba(63,90,61,0.06) 0 2px, transparent 2px 46px),
+      repeating-linear-gradient(-55deg, rgba(63,90,61,0.06) 0 2px, transparent 2px 46px);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(43,38,32,0.9);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(255,252,245,0.1);
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .logo{
+    font-family:'Fraunces',serif;font-weight:600;font-style:italic;
+    color:var(--papel);font-size:21px;
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .logo span{
+    color:var(--oro);font-family:'Work Sans',sans-serif;font-style:normal;
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;font-weight:600;
+  }
+  .navlinks{display:none;gap:30px;font-size:13.5px;font-weight:500;}
+  @media(min-width:900px){.navlinks{display:flex;}}
+  .navlinks :is(a,button){color:rgba(251,243,228,0.75);transition:color .15s ease;padding:4px 0;position:relative;}
+  .navlinks :is(a,button):hover, .navlinks :is(a,button):focus-visible{color:var(--papel);}
+  .navlinks :is(a,button)::after{content:"";position:absolute;left:0;bottom:-4px;height:1.5px;width:0;background:var(--oro);transition:width .2s ease;}
+  .navlinks :is(a,button):hover::after{width:100%;}
+  .nav-cta{display:none;}
+  @media(min-width:760px){.nav-cta{display:inline-flex;padding:11px 22px;font-size:13px;}}
+
+  .nav-toggle{
+    display:flex;flex-direction:column;justify-content:center;gap:5px;
+    width:40px;height:40px;border:1px solid rgba(251,243,228,0.3);border-radius:50%;
+    padding:0;
+  }
+  @media(min-width:900px){.nav-toggle{display:none;}}
+  .nav-toggle span{display:block;height:1.5px;width:16px;margin:0 auto;background:var(--papel);transition:transform .25s ease, opacity .25s ease;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+  .nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
+  .nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+  .nav-toggle:focus-visible{outline:2px solid var(--oro);outline-offset:2px;}
+
+  .mobile-panel{
+    position:fixed;top:76px;left:0;right:0;
+    background:var(--verde-osc);
+    border-bottom:1px solid rgba(251,243,228,0.12);
+    display:flex;flex-direction:column;padding:8px 24px 24px;
+    transform:translateY(-8px);opacity:0;pointer-events:none;
+    transition:opacity .2s ease, transform .2s ease;z-index:49;
+  }
+  .mobile-panel.open{opacity:1;transform:none;pointer-events:auto;}
+  @media(min-width:900px){.mobile-panel{display:none;}}
+  .mobile-panel :is(a,button){
+    font-size:14px;font-weight:500;color:rgba(251,243,228,0.8);
+    padding:14px 0;border-bottom:1px solid rgba(251,243,228,0.1);display:block;width:100%;
+  }
+  .mobile-panel :is(a,button):hover, .mobile-panel :is(a,button):focus-visible{color:var(--papel);}
+  .mobile-panel .btn{margin-top:18px;align-self:flex-start;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    background:
+      radial-gradient(ellipse 70% 55% at 15% 10%, rgba(124,154,106,0.35), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 90%, rgba(201,154,62,0.18), transparent 60%),
+      var(--verde-osc);
+    color:var(--papel);
+    overflow:hidden;padding-top:76px;
+  }
+  .hero-inner{position:relative;z-index:2;padding:60px 0 76px;}
+  .hero-tag{
+    font-size:12.5px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+    color:var(--oro);margin-bottom:22px;display:inline-block;
+    border:1px solid rgba(201,154,62,0.5);padding:7px 16px;border-radius:999px;
+  }
+  .hero h1{font-size:clamp(46px,9vw,104px);color:var(--papel);}
+  .hero h1 em{font-style:italic;color:var(--verde-luz);font-weight:500;}
+  .hero p.lede{max-width:540px;margin-top:26px;font-size:18.5px;color:rgba(251,243,228,0.78);}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:38px;}
+
+  .hero-stats{position:relative;z-index:2;border-top:1px solid rgba(251,243,228,0.14);padding:24px 0;}
+  .hero-stats .wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  @media(min-width:700px){.hero-stats .wrap{grid-template-columns:repeat(4,1fr);}}
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:32px;color:var(--oro);font-weight:600;}
+  .stat span{font-size:12px;letter-spacing:0.04em;color:rgba(251,243,228,0.65);}
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:100px 0;scroll-margin-top:84px;}
+  .section-head{max-width:620px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(32px,4.6vw,50px);color:var(--tinta);}
+  .section-head p{margin-top:16px;font-size:17px;color:var(--humo);}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- FORTALEZAS ---------- */
+  .fortalezas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--linea);border:1px solid var(--linea);}
+  .fcard{background:var(--papel);padding:36px 30px;transition:background .2s ease;}
+  .fcard:hover{background:#fff;}
+  .fcard .leaf{color:var(--verde-luz);font-size:22px;margin-bottom:14px;display:block;}
+  .fcard h3{font-size:22px;margin-bottom:10px;color:var(--tinta);font-weight:600;}
+  .fcard p{font-size:14.5px;color:var(--humo);}
+  .fcard .who{display:block;margin-top:16px;font-size:12px;color:var(--terracota);font-weight:600;letter-spacing:0.02em;}
+
+  /* ---------- MENU ---------- */
+  .menu-section{background:var(--verde-osc);color:var(--papel);position:relative;}
+  .menu-section .section-head h2{color:var(--papel);}
+  .menu-section .section-head p{color:rgba(251,243,228,0.7);}
+  .menu-list{border-top:1px solid rgba(251,243,228,0.16);position:relative;z-index:1;}
+  .mrow{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:28px 0;border-bottom:1px solid rgba(251,243,228,0.16);transition:padding-left .2s ease;}
+  .mrow:hover{padding-left:10px;border-color:var(--oro);}
+  .mrow .mname{font-family:'Fraunces',serif;font-size:clamp(20px,2.6vw,27px);font-weight:600;}
+  .mrow .mdesc{font-size:14px;color:rgba(251,243,228,0.65);margin-top:6px;max-width:520px;}
+  .mrow .mtag{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--oro);white-space:nowrap;font-weight:600;}
+
+  .ticket-note{margin-top:44px;display:flex;gap:16px;align-items:flex-start;font-size:13.5px;color:rgba(251,243,228,0.6);border-left:2px solid var(--oro);padding-left:16px;position:relative;z-index:1;}
+
+  /* ---------- NOTAS DE JARDIN (reviews) ---------- */
+  .notas-section{background:var(--crema-2);}
+  .rail-scroll{display:flex;gap:28px;overflow-x:auto;padding:24px 4px 32px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;}
+  .rail-scroll::-webkit-scrollbar{height:8px;}
+  .rail-scroll::-webkit-scrollbar-thumb{background:var(--verde-luz);border-radius:4px;}
+  .rail-scroll::-webkit-scrollbar-track{background:var(--linea);}
+
+  .nota{
+    scroll-snap-align:start;flex:0 0 270px;
+    background:var(--papel);
+    padding:26px 22px 20px;
+    position:relative;
+    border-radius:4px 4px 40px 4px;
+    box-shadow:0 12px 26px rgba(43,38,32,0.1);
+    border:1px solid #ece0c2;
+  }
+  .nota:nth-child(odd){transform:rotate(-0.8deg);}
+  .nota:nth-child(even){transform:rotate(0.7deg);}
+  .nota:hover{transform:rotate(0deg) translateY(-4px);box-shadow:0 18px 32px rgba(43,38,32,0.16);}
+  .nota .pin{
+    position:absolute;top:-10px;left:24px;width:20px;height:20px;border-radius:50%;
+    background:var(--terracota);box-shadow:0 3px 6px rgba(0,0,0,0.2);
+  }
+  .nota p.quote{font-size:15px;color:var(--tinta);min-height:100px;margin-top:6px;}
+  .nota .nt-foot{margin-top:16px;padding-top:12px;border-top:1px dashed #d9c79a;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--humo);}
+  .nota .stars{color:var(--oro);letter-spacing:1px;}
+  .rail-hint{font-size:11.5px;color:var(--humo);display:flex;align-items:center;gap:8px;margin-top:6px;font-style:italic;}
+
+  /* ---------- UBICACION ---------- */
+  .ubicacion{background:var(--papel);border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);}
+  .ubic-grid{display:grid;grid-template-columns:1fr;gap:40px;}
+  @media(min-width:860px){.ubic-grid{grid-template-columns:1fr 1fr;align-items:center;}}
+  .ubic-card{background:var(--verde-osc);color:var(--papel);padding:42px;position:relative;border-radius:4px;}
+  .ubic-card::before{
+    content:"SUCURSAL";position:absolute;top:-13px;left:34px;
+    background:var(--terracota);color:var(--papel);
+    font-size:11px;letter-spacing:0.12em;font-weight:600;padding:5px 14px;border-radius:999px;
+  }
+  .ubic-card h3{font-size:30px;margin-top:12px;font-weight:600;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .ubic-list{margin-top:24px;display:flex;flex-direction:column;gap:16px;}
+  .ubic-list div{display:flex;gap:14px;align-items:flex-start;}
+  .ubic-list .ic{
+    width:24px;height:24px;flex:0 0 24px;border:1px solid var(--oro);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--oro);
+  }
+  .ubic-list p{font-size:14.5px;color:rgba(251,243,228,0.72);}
+  .ubic-list strong{display:block;color:var(--papel);font-size:15px;margin-bottom:2px;font-weight:600;}
+
+  .horario-list{list-style:none;display:flex;flex-direction:column;gap:4px;margin-top:2px;}
+  .horario-list li{display:flex;justify-content:space-between;gap:16px;font-size:14px;color:rgba(251,243,228,0.72);}
+  .horario-list li span:last-child{font-size:12.5px;color:var(--oro);font-weight:600;}
+
+  .open-badge{
+    font-size:11.5px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;
+    padding:4px 12px;border-radius:999px;border:1px solid rgba(251,243,228,0.3);color:rgba(251,243,228,0.7);
+  }
+  .open-badge.open{color:#9CC17E;border-color:#9CC17E;}
+  .open-badge.closed{color:var(--terracota-luz);border-color:var(--terracota-luz);}
+
+  .map-frame{width:100%;min-height:340px;border:1px solid var(--linea);border-radius:4px;overflow:hidden;}
+
+  /* ---------- FOOTER ---------- */
+  .wa-float{
+    position:fixed;right:20px;bottom:20px;z-index:60;
+    width:56px;height:56px;border-radius:50%;background:var(--terracota);color:var(--papel);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    transition:transform .18s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float:focus-visible{outline:3px solid var(--oro);outline-offset:3px;}
+  .wa-float svg{width:24px;height:24px;fill:currentColor;}
+
+  footer{background:var(--verde-osc);color:var(--papel);padding:84px 0 30px;}
+  .cta-final{text-align:center;padding-bottom:70px;border-bottom:1px solid rgba(251,243,228,0.14);margin-bottom:42px;}
+  .cta-final h2{font-size:clamp(30px,5.6vw,58px);color:var(--papel);}
+  .cta-final p{color:rgba(251,243,228,0.7);margin:18px auto 30px;max-width:480px;}
+  .foot-grid{display:grid;grid-template-columns:1fr;gap:32px;}
+  @media(min-width:700px){.foot-grid{grid-template-columns:2fr 1fr 1fr;}}
+  .foot-grid h4{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--oro);margin-bottom:14px;font-weight:600;}
+  .foot-grid p, .foot-grid :is(a,button){font-size:14px;color:rgba(251,243,228,0.68);}
+  .foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .foot-grid :is(a,button):hover{color:var(--papel);}
+  .foot-bottom{margin-top:50px;font-size:11.5px;color:rgba(251,243,228,0.4);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <button class="logo" data-scroll="#top" type="button">La Quinta Terraza <span>MTY</span></button>
+    <div class="navlinks">
+      <button data-scroll="#fortalezas" type="button">Fortalezas</button>
+      <button data-scroll="#menu" type="button">Cocina</button>
+      <button data-scroll="#notas" type="button">Reseñas</button>
+      <button data-scroll="#ubicacion" type="button">Ubicación</button>
+    </div>
+    <button data-scroll="#ubicacion" class="btn btn-primary nav-cta" type="button">Reservar</button>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Abrir menú" type="button">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <button data-scroll="#fortalezas" type="button">Fortalezas</button>
+    <button data-scroll="#menu" type="button">Cocina</button>
+    <button data-scroll="#notas" type="button">Reseñas</button>
+    <button data-scroll="#ubicacion" type="button">Ubicación</button>
+    <button data-scroll="#ubicacion" class="btn btn-primary" type="button">Reservar</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero trellis">
+    <div class="wrap hero-inner">
+      <span class="hero-tag">Desayunos, brunch y buffet dominical · Carretera Nacional</span>
+      <h1 class="reveal in">MESA PUESTA<br>ENTRE <em>JARDINES</em></h1>
+      <p class="lede">Chilaquiles al momento, café recién hecho y una terraza rodeada de naturaleza. Así se disfruta la mañana en Monterrey.</p>
+      <div class="hero-ctas">
+        <button data-scroll="#menu" class="btn btn-primary" type="button">Ver la cocina</button>
+        <button data-scroll="#ubicacion" class="btn btn-ghost" type="button">Cómo llegar</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="wrap">
+        <div class="stat"><b>4.0★</b><span>Calificación de comensales</span></div>
+        <div class="stat"><b>100%</b><span>Ambiente familiar</span></div>
+        <div class="stat"><b>Dom</b><span>Buffet dominical completo</span></div>
+        <div class="stat"><b>+P</b><span>Estacionamiento amplio</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="fortalezas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Lo que más se repite</div>
+        <h2>Por qué la gente vuelve cada domingo</h2>
+        <p>Tomamos lo que la clientela describe una y otra vez en sus reseñas — esto es lo que distingue a La Quinta Terraza.</p>
+      </div>
+      <div class="fortalezas-grid reveal">
+        <div class="fcard">
+          <span class="leaf">🌿</span>
+          <h3>Buffet dominical completo</h3>
+          <p>Aunque llegues casi a mediodía, la mesa sigue bien surtida — desayuno y comida en un mismo lugar.</p>
+          <span class="who">— Miguel C.</span>
+        </div>
+        <div class="fcard">
+          <span class="leaf">🌿</span>
+          <h3>Ambiente 100% familiar</h3>
+          <p>Espacio amplio, tranquilo y bonito — de los favoritos para llevar a la familia completa.</p>
+          <span class="who">— Alejandra G.</span>
+        </div>
+        <div class="fcard">
+          <span class="leaf">🌿</span>
+          <h3>Presentación de nivel gourmet</h3>
+          <p>Ingredientes frescos y platillos bien montados, con un toque creativo en cada mesa.</p>
+          <span class="who">— Javier A.</span>
+        </div>
+        <div class="fcard">
+          <span class="leaf">🌿</span>
+          <h3>Servicio atento y rápido</h3>
+          <p>Meseros pendientes de la mesa en todo momento, incluso con grupos grandes.</p>
+          <span class="who">— Ricardo E.</span>
+        </div>
+        <div class="fcard">
+          <span class="leaf">🌿</span>
+          <h3>Buen precio para lo que ofrece</h3>
+          <p>Buffet dominical accesible, con tarifa reducida para niños y opciones a la carta.</p>
+          <span class="who">— Fidela J.</span>
+        </div>
+        <div class="fcard">
+          <span class="leaf">🌿</span>
+          <h3>Estacionamiento amplio</h3>
+          <p>Espacio suficiente para llegar en grupo sin batallar para dejar el coche.</p>
+          <span class="who">— Jair R.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="menu" class="menu-section trellis">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">De la cocina</div>
+        <h2>Lo que más se pide</h2>
+        <p>Clásicos de desayuno y brunch, más los favoritos que la clientela más recomienda al hablar de nosotros.</p>
+      </div>
+      <div class="menu-list reveal">
+        <div class="mrow">
+          <div>
+            <div class="mname">Chilaquiles al momento</div>
+            <div class="mdesc">El clásico de la casa, recién preparado, para arrancar bien la mañana.</div>
+          </div>
+          <div class="mtag">Desayuno</div>
+        </div>
+        <div class="mrow">
+          <div>
+            <div class="mname">Molletes</div>
+            <div class="mdesc">Frijoles, queso gratinado y pico de gallo sobre pan recién horneado.</div>
+          </div>
+          <div class="mtag">Desayuno</div>
+        </div>
+        <div class="mrow">
+          <div>
+            <div class="mname">Hotcakes tradicionales</div>
+            <div class="mdesc">Esponjosos, con un toque de crema batida y frutos rojos.</div>
+          </div>
+          <div class="mtag">Favorito dulce</div>
+        </div>
+        <div class="mrow">
+          <div>
+            <div class="mname">Enchiladas suizas</div>
+            <div class="mdesc">Las que la clientela frecuente pide una y otra vez, gratinadas y bañadas en salsa verde.</div>
+          </div>
+          <div class="mtag">Comida</div>
+        </div>
+        <div class="mrow">
+          <div>
+            <div class="mname">Coliflor de la casa</div>
+            <div class="mdesc">Guarnición insignia — mencionada como una de las favoritas de la carta.</div>
+          </div>
+          <div class="mtag">Guarnición</div>
+        </div>
+        <div class="mrow">
+          <div>
+            <div class="mname">Barbacoa dominical</div>
+            <div class="mdesc">Parte del buffet de los domingos, jugosa y bien sazonada.</div>
+          </div>
+          <div class="mtag">Solo domingos</div>
+        </div>
+      </div>
+      <div class="ticket-note">
+        <span>*</span>
+        <p>El ticket promedio reportado por la clientela varía entre $200 y $500 MXN por persona. Confirma precios vigentes del buffet y el menú a la carta en sucursal.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="notas" class="notas-section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Directo de las mesas</div>
+        <h2>Notas de quienes ya nos visitaron</h2>
+        <p>Como si las hubieran dejado prendidas en el jardín — así llegan sus comentarios.</p>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="rail-scroll reveal">
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Fuimos al buffet porque nos lo habían recomendado, mereció mucho la pena. Aún casi a las 12 tenían de todo. Atención y servicio bastante buenos."</p>
+          <div class="nt-foot"><span>Miguel C.</span><span class="stars">★★★★★</span></div>
+        </div>
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Es un lugar muy lindo y agradable, 100% familiar. La comida es deli — ¡fan de la coliflor que preparan ahí!"</p>
+          <div class="nt-foot"><span>Alejandra G.</span><span class="stars">★★★★★</span></div>
+        </div>
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Experiencia gastronómica excepcional. La atención del chef se refleja en la frescura de los ingredientes y la creatividad de las presentaciones."</p>
+          <div class="nt-foot"><span>Javier A.</span><span class="stars">★★★★★</span></div>
+        </div>
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Excelente lugar para ir con familia o amigas. Los domingos tienen un buffet bonito, completo y a buen precio, con tarifa especial para niños."</p>
+          <div class="nt-foot"><span>Fidela J.</span><span class="stars">★★★★★</span></div>
+        </div>
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Excelente servicio, la comida me encantó. Espacio amplio para estacionarse — se volvió uno de mis restaurantes favoritos en Monterrey."</p>
+          <div class="nt-foot"><span>Jair R.</span><span class="stars">★★★★★</span></div>
+        </div>
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Somos grupo familiar de 10 adultos y 4 niños; el servicio del personal fue excelente, siempre atentos a lo que faltaba en la mesa."</p>
+          <div class="nt-foot"><span>Ricardo E.</span><span class="stars">★★★★★</span></div>
+        </div>
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Ambiente tranquilo y agradable. Desayunos deliciosos."</p>
+          <div class="nt-foot"><span>Isabel C.</span><span class="stars">★★★★★</span></div>
+        </div>
+        <div class="nota">
+          <span class="pin"></span>
+          <p class="quote">"Me encanta ir a desayunar, todo está súper bonito y lo que más me gusta son las ensaladas — riquísimas."</p>
+          <div class="nt-foot"><span>Andrea B.</span><span class="stars">★★★★★</span></div>
+        </div>
+      </div>
+      <div class="wrap"><div class="rail-hint">← desliza para ver más notas →</div></div>
+    </div>
+  </section>
+
+  <section id="ubicacion" class="ubicacion">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Encuéntranos</div>
+        <h2>Sucursal Carretera Nacional</h2>
+      </div>
+      <div class="ubic-grid reveal">
+        <div class="ubic-card">
+          <h3>La Quinta Terraza <span id="openBadge" class="open-badge">·</span></h3>
+          <div class="ubic-list">
+            <div>
+              <span class="ic">◎</span>
+              <p><strong>Dirección</strong>Antiguo Camino a Villa de Santiago #1009, Col. El Uro, Monterrey, N.L.</p>
+            </div>
+            <div>
+              <div style="width:100%;">
+                <strong>Horario</strong>
+                <ul class="horario-list">
+                  <li><span>Lun · Mar · Mié</span><span>7:30 AM – 6 PM</span></li>
+                  <li><span>Jueves</span><span>7:30 AM – 6 PM</span></li>
+                  <li><span>Vie · Sáb</span><span>7:30 AM – 10 PM</span></li>
+                  <li><span>Domingo</span><span>7:30 AM – 6 PM</span></li>
+                </ul>
+              </div>
+            </div>
+            <div>
+              <span class="ic">☏</span>
+              <p><strong>Reservaciones</strong>Informes y reservaciones al <a href="tel:+528123500332" style="color:var(--oro);text-decoration:underline;">81 2350 0332</a>.</p>
+            </div>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=Antiguo+Camino+a+Villa+de+Santiago+1009%2C+El+Uro%2C+Monterrey%2C+N.L." target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:26px;">Abrir en Google Maps</a>
+        </div>
+        <div class="map-frame">
+          <iframe
+            title="Ubicación La Quinta Terraza, Carretera Nacional, Monterrey"
+            src="https://www.google.com/maps?q=Antiguo+Camino+a+Villa+de+Santiago+1009%2C+El+Uro%2C+Monterrey%2C+N.L.&output=embed"
+            width="100%" height="340" style="border:0;display:block;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<a class="wa-float" href="tel:+528123500332" aria-label="Llamar a La Quinta Terraza">
+  <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.2 2.4 3.2 4.4 5.6 5.6l1.9-1.9c.2-.2.6-.3.9-.2 1 .3 2 .5 3.1.5.5 0 .9.4.9.9V19c0 .5-.4.9-.9.9C10.5 19.9 4.1 13.5 4.1 5.9c0-.5.4-.9.9-.9h3.3c.5 0 .9.4.9.9 0 1.1.2 2.1.5 3.1.1.3 0 .7-.2.9L6.6 10.8Z"/></svg>
+</a>
+
+<footer>
+  <div class="wrap">
+    <div class="cta-final reveal">
+      <h2>Tu mesa entre jardines te espera</h2>
+      <p>Desayunos frescos, buffet dominical y una terraza que se disfruta en cualquier ocasión.</p>
+      <button data-scroll="#ubicacion" class="btn btn-primary" type="button">Cómo llegar</button>
+    </div>
+    <div class="foot-grid">
+      <div>
+        <h4>La Quinta Terraza</h4>
+        <p>Restaurante de desayunos, brunch y buffet dominical en Monterrey, con ambiente familiar rodeado de naturaleza.</p>
+      </div>
+      <div>
+        <h4>Sucursal</h4>
+        <ul>
+          <li><button data-scroll="#ubicacion" type="button">Carretera Nacional</button></li>
+          <li><button data-scroll="#menu" type="button">De la cocina</button></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="tel:+528123500332">81 2350 0332</a></li>
+          <li><a href="https://www.instagram.com/laquinta.mty/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/p/La-Quinta-Mty-100092401403828/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> La Quinta Terraza</span>
+      <span>Diseñado con calma de jardín, servido en Monterrey.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  navToggle.addEventListener('click', ()=>{
+    const open = mobilePanel.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobilePanel.querySelectorAll('button').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      mobilePanel.classList.remove('open');
+      navToggle.setAttribute('aria-expanded','false');
+    });
+  });
+  document.addEventListener('click', (e)=>{
+    if(mobilePanel.classList.contains('open') && !mobilePanel.contains(e.target) && !navToggle.contains(e.target)){
+      mobilePanel.classList.remove('open');
+      navToggle.setAttribute('aria-expanded','false');
+    }
+  });
+
+  // Reliable smooth scroll for internal nav controls (buttons, not links — avoids
+  // any platform-level interceptor that treats "#" navigations as outbound links)
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('[data-scroll]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.getAttribute('data-scroll');
+      const target = document.querySelector(id);
+      if(!target) return;
+      target.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:0.12});
+  reveals.forEach(el=>io.observe(el));
+
+  // Drag-to-scroll on the notas rail (desktop mouse support)
+  const rail = document.querySelector('.rail-scroll');
+  if(rail){
+    let isDown = false, startX, scrollLeft;
+    rail.addEventListener('mousedown', (e)=>{
+      isDown = true; rail.style.cursor = 'grabbing';
+      startX = e.pageX - rail.offsetLeft; scrollLeft = rail.scrollLeft;
+    });
+    ['mouseleave','mouseup'].forEach(evt=>rail.addEventListener(evt, ()=>{
+      isDown = false; rail.style.cursor = 'grab';
+    }));
+    rail.addEventListener('mousemove', (e)=>{
+      if(!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - rail.offsetLeft;
+      rail.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    });
+    rail.style.cursor = 'grab';
+  }
+
+  // Open now / closed badge, based on real weekly hours (America/Monterrey)
+  (function(){
+    const badge = document.getElementById('openBadge');
+    if(!badge) return;
+    // 0=Sun 1=Mon 2=Tue 3=Wed 4=Thu 5=Fri 6=Sat
+    const schedule = {0:[7.5,18], 1:[7.5,18], 2:[7.5,18], 3:[7.5,18], 4:[7.5,18], 5:[7.5,22], 6:[7.5,22]};
+    const now = new Date(new Date().toLocaleString('en-US',{timeZone:'America/Monterrey'}));
+    const day = now.getDay();
+    const hours = now.getHours() + now.getMinutes()/60;
+    const open = schedule[day] && hours >= schedule[day][0] && hours < schedule[day][1];
+    badge.textContent = open ? 'Abierto ahora' : 'Cerrado ahora';
+    badge.classList.add(open ? 'open' : 'closed');
+  })();
+</script>
+
+</body>
+</html>
